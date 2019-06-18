@@ -1,23 +1,51 @@
 import React from "react";
-
-class MyComponent extends React.Component {
+class SearchComponent extends React.Component {                      //  COPIL
   constructor() {
     super();
-    this.state = { firstName: "Doina", lastName: "Toderici" };
+    this.state = { value: "" };
+    this.update = this.update.bind(this);
+  }
+
+  update() {
+    this.props.show(this.input.value);
+
+    this.setState({ value: this.input.value });
+  }
+
+  render() {
+    return (
+      <div>
+        <input ref={input => (this.input = input)} onChange={this.update} />
+        <p>{this.state.value}</p>
+        <p>{this.props.name}</p>
+      </div>
+    );
+  }
+}
+
+
+
+
+
+
+
+class MainComponent extends React.Component {                       //  PARINTE
+  constructor() {
+    super();
+    this.state = { name: "Doina", value: "" };
     this.changeName = this.changeName.bind(this);
+    this.showValue = this.showValue.bind(this);
   }
 
   changeName() {
-    this.setState({
-      firstName: this.firstName.value,
-      lastName: this.lastName.value
-    });
-    this.h1.style.color === "red"  ? this.h1.style.color = "green" :  this.h1.style.color = "red";
+    this.setState({ name: this.state.name === "Ion" ? "Doina" : "Ion" });
+    this.h1.style.color === "red"
+      ? (this.h1.style.color = "green")
+      : (this.h1.style.color = "red");
   }
 
-  componentDidMount() {
-    this.firstName.focus();
-    this.lastName.focus();
+  showValue(valeur) {
+    this.setState({ value: valeur });
   }
 
   render() {
@@ -27,14 +55,14 @@ class MyComponent extends React.Component {
           style={{ color: this.props.color ? this.props.color : "yellow" }}
           ref={title => (this.h1 = title)}
         >
-          Hello {this.state.firstName} {this.state.lastName}
+          Hello {this.state.name}
         </h1>
         <button onClick={this.changeName}>Change Name</button>
-        <input ref={firstName => (this.firstName = firstName)} />
-        <input ref={lastName => (this.lastName = lastName)} />
+        <SearchComponent name={this.state.name} show={this.showValue} />
+        <p>{this.state.value}</p>
       </div>
     );
   }
 }
 
-export default MyComponent;
+export default MainComponent;
