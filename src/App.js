@@ -1,8 +1,9 @@
 import React from "react";
-import MyComponent from "./MyComponent";
+import ToDo from'./ToDo';
+//<MyComponent name="Doina" color="red" />,
 
 function App() {
-  return <MyComponent name="Doina" color="red" />;
+  return <ToDo />;
 }
 
 export default App;
