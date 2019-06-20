@@ -1,6 +1,6 @@
 import React from "react";
-class SearchComponent extends React.Component {
-  //  COPIL
+class SearchComponent extends React.Component {            //  COPIL
+
   constructor() {
     super();
     this.state = { value: "" };
@@ -24,8 +24,8 @@ class SearchComponent extends React.Component {
   }
 }
 
-class MainComponent extends React.Component {
-  //  PARINTE
+class MainComponent extends React.Component {                //  PARINTE
+
   constructor() {
     super();
     this.state = { name: "Doina", value: "" };
